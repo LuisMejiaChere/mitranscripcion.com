@@ -1,0 +1,14 @@
+Options -MultiViews
+RewriteEngine On
+
+# Expo Router exports each web route as a flat .html file (for example,
+# /dashboard -> /dashboard.html). Resolve extensionless routes on refresh.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+RewriteRule ^$ index.html [L]
+RewriteRule ^ +not-found.html [L]
